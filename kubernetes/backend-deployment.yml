@@ -20,21 +20,21 @@ spec:
           imagePullPolicy: ____     # do not download: the image is already on this computer
           env:
             - name: DB_HOST
-              value: ____           # name of the postgres Service. Not a secret, so written directly
+              value: postgres           # name of the postgres Service. Not a secret, so written directly
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
-                  name: ____        # name of the Secret
-                  key: ____         # which Secret key holds the database name?
+                  name: postgres-secret        # name of the Secret
+                  key: POSTGRES_DB        # which Secret key holds the database name?
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: ____
+                  name: postgres-secret 
                   key: ____         # which key holds the user?
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: ____
+                  name: postgres-secret 
                   key: ____         # which key holds the password?
           ports:
             - containerPort: ____   # Flask port
